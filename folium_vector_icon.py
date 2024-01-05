@@ -208,12 +208,12 @@ class VectorIcon(folium.DivIcon):
         )
 
         g = (
-            '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'
+            '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'  # noqa: E501
             if head.length < length
-            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'
+            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'  # noqa: E501
         )
 
-        html = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'
+        html = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'  # noqa: E501
 
         html = html.format(
             bbox=handler.bbox,
