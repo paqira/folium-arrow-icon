@@ -30,6 +30,10 @@ class _MetrixHandler:
     angle: float
     margin: int
 
+    @property
+    def degree(self):
+        return math.degrees(self.angle)
+
     @cached_property
     def cos(self):
         return math.cos(self.angle)
@@ -73,9 +77,6 @@ class _MetrixHandler:
         elif anchor == "mid":
             return abs(self.bbox.x0) + self.x / 2.0, abs(self.bbox.y0) + self.y / 2.0
         return abs(self.bbox.x0), abs(self.bbox.y0)
-
-    def rotate(self, x: float, y: float):
-        return self.cos * x - self.sin * y, self.sin * x + self.cos * y
 
 
 @dataclass(frozen=True)
@@ -163,67 +164,65 @@ class VectorIcon(folium.DivIcon):
             length=length, angle=angle, margin=max(head.length, head.width, body.width)
         )
 
-        #            5
-        #            | \
-        # @-----<----6  \
-        # |              \
-        # |               4
-        # |              /
-        # 1---->-----2  /
-        #            | /
-        #            3
-        vector = (
+        #
+        #    |          5
+        #    |          | \
+        #    @-----<----6  \
+        #    |              \
+        # ---+---------------4---
+        #    |              /
+        #    1---->-----2  /
+        #    |          | /
+        #    |          3
+        #
+        path = (
             '<path d="M {:.7g} {:.7g} l {:.7g} {:.7g} '
             "l {:.7g} {:.7g} l {:.7g} {:.7g} "
             "l {:.7g} {:.7g} l {:.7g} {:.7g} "
             'l {:.7g} {:.7g} Z" />'
         ).format(
             # move @
-            *handler.rotate(0, -body.width / 2.0),
+            0,
+            -body.width / 2.0,
             # to 1
-            *handler.rotate(0, body.width),
+            0,
+            body.width,
             # to 2
-            *handler.rotate(max(length - head.length, 0), 0),
+            max(length - head.length, 0),
+            0,
             # to 3
-            *handler.rotate(0, (head.width - body.width) / 2.0),
+            0,
+            (head.width - body.width) / 2.0,
             # to 4
-            *handler.rotate(head.length, -head.width / 2.0),
+            head.length,
+            -head.width / 2.0,
             # to 5
-            *handler.rotate(-head.length, -head.width / 2.0),
+            -head.length,
+            -head.width / 2.0,
             # to 6
-            *handler.rotate(0, (head.width - body.width) / 2.0),
+            0,
+            (head.width - body.width) / 2.0,
             # to @ by Z
         )
 
-        vector = (
-            '<g stroke="{line_color}" fill="{color}"'
-            ' stroke-width="{line_width}">'
-            "{}</g>"
+        g = (
+            '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'
             if head.length < length
-            else '<g stroke="{line_color}" fill="{color}"'
-            ' stroke-width="{line_width}" transform="scale({scale})">'
-            "{}</g>"
-        ).format(vector)
-
-        html = (
-            "<svg"
-            ' xmlns="http://www.w3.org/2000/svg"'
-            ' version="1.1"'
-            ' viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">'
-            "{vector}"
-            "</svg>"
+            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'
         )
 
+        html = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'
+
         html = html.format(
-            angle=angle,
-            vector=vector,
-            #
             bbox=handler.bbox,
-            scale=length / head.length,
-            #
-            color=color,
-            line_width=border_width,
-            line_color=border_color if border_color is not None else color,
+            g=g.format(
+                path=path,
+                angle=handler.degree,
+                scale=length / head.length,
+                color=color,
+                line_width=border_width,
+                line_color=border_color if border_color is not None else color,
+            ),
         )
 
         super().__init__(
