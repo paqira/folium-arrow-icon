@@ -1,3 +1,5 @@
+"""Simple Vector (arrow) Icon for folium"""
+
 from __future__ import annotations
 
 import math
