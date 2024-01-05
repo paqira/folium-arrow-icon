@@ -160,10 +160,8 @@ class VectorIcon(folium.DivIcon):
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
     ):
-        angle = angle - math.pi / 2
-
         handler = _MetrixHandler(
-            length=length, angle=angle, margin=max(head.length, head.width, body.width)
+            length=length, angle=angle - math.pi / 2, margin=max(head.length, head.width, body.width)
         )
 
         #
@@ -210,7 +208,8 @@ class VectorIcon(folium.DivIcon):
         g = (
             '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'  # noqa: E501
             if head.length < length
-            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'  # noqa: E501
+            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'
+        # noqa: E501
         )
 
         html = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'  # noqa: E501
@@ -290,12 +289,9 @@ class VectorIcon(folium.DivIcon):
             ...     ),
             ... )
         """
-        intensity = math.hypot(components[1], components[0])
-        angle = math.atan2(components[1], components[0])
-
         return cls(
-            length=intensity,
-            angle=angle,
+            length=math.hypot(components[1], components[0]),
+            angle=math.atan2(components[1], components[0]),
             head=head,
             body=body,
             color=color,
