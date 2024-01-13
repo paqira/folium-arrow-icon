@@ -33,7 +33,7 @@ m.save("sample.html")
 
 See xxx for more example.
 
-This is available from PyPI:
+You can install `folium_vector_icon` from PyPI:
 
 ```shell
 pip install folium_vector_icon
