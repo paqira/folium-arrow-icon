@@ -29,10 +29,8 @@ author = "Kentaro Tatsumi"
 extensions = [
     # "myst_parser",
     "myst_nb",
-    # 'sphinx.ext.autosectionlabel',
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
-    # 'sphinx.ext.todo',
 ]
 
 autosectionlabel_prefix_document = True
@@ -41,17 +39,12 @@ myst_enable_extensions = [
     "deflist",
     "attrs_inline",
     "dollarmath",
-    # "colon_fence",
-    #
-    # "heading_anchors",
 ]
 
 myst_heading_anchors = 2
 
 source_suffix = {
     ".rst": "restructuredtext",
-    # '.ipynb': 'myst-nb',
-    # '.myst': 'myst-nb',
 }
 
 # Add any paths that contain templates here, relative to this directory.
