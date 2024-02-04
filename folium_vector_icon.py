@@ -1,22 +1,21 @@
-"""Simple Vector (arrow) Icon for folium"""
+"""Simple Vector (arrow) Icon for folium."""
 
 from __future__ import annotations
 
 import math
 from dataclasses import dataclass
 from functools import cached_property
-from typing import Literal, NamedTuple, Sequence
+from typing import Final, Literal, NamedTuple, Sequence
 
 import folium
 
 __all__ = [
-    "__version__",
     "VectorIcon",
     "VectorIconHead",
     "VectorIconBody",
 ]
 
-__version__ = "0.1.0"
+__version__: Final = "0.1.0"
 
 
 class _BBox(NamedTuple):
@@ -83,7 +82,7 @@ class _MetrixHandler:
 
 @dataclass(frozen=True)
 class VectorIconHead:
-    """Metric of head"""
+    """Metric of head."""
 
     width: int | float = 8
     """Width of head"""
@@ -93,7 +92,7 @@ class VectorIconHead:
 
 @dataclass(frozen=True)
 class VectorIconBody:
-    """Metric of body"""
+    """Metric of body."""
 
     width: int | float = 2
     """Width of boby"""
@@ -104,7 +103,7 @@ DEFAULT_BODY = VectorIconBody()
 
 
 class VectorIcon(folium.DivIcon):
-    """Simple Vector (arrow) Icon
+    """Simple Vector (arrow) Icon.
 
     Args:
         length: the length of the vector which satisfies 0 <=.
@@ -161,7 +160,9 @@ class VectorIcon(folium.DivIcon):
         class_name: str = "empty",
     ):
         handler = _MetrixHandler(
-            length=length, angle=angle - math.pi / 2, margin=max(head.length, head.width, body.width)
+            length=length,
+            angle=angle - math.pi / 2,
+            margin=max(head.length, head.width, body.width),
         )
 
         #
@@ -206,13 +207,31 @@ class VectorIcon(folium.DivIcon):
         )
 
         g = (
-            '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'  # noqa: E501
+            "<g "
+            'stroke="{line_color}" '
+            'fill="{color}" '
+            'stroke-width="{line_width}" '
+            'transform="rotate({angle} 0 0)">'
+            "{path}"
+            "</g>"
             if head.length < length
-            else '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'
-        # noqa: E501
+            else "<g "
+                 'stroke="{line_color}" '
+                 'fill="{color}" '
+                 'stroke-width="{line_width}" '
+                 'transform="scale({scale})rotate({angle} 0 0)">'
+                 "{path}"
+                 "</g>"
         )
 
-        html = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'  # noqa: E501
+        html = (
+            "<svg "
+            'xmlns="http://www.w3.org/2000/svg" '
+            'version="1.1" '
+            'viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">'
+            "{g}"
+            "</svg>"
+        )
 
         html = html.format(
             bbox=handler.bbox,
@@ -247,7 +266,7 @@ class VectorIcon(folium.DivIcon):
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
     ):
-        """Makes a :class:`VectorIcon` from components of latitude and longitude direction
+        """Makes a :class:`VectorIcon` from components of latitude and longitude direction.
 
         Args:
             components: the components vector, latitude and longitude direction.
