@@ -229,12 +229,12 @@ class VectorIcon(folium.DivIcon):
             "</g>"
             if head.length < length
             else "<g "
-                 'stroke="{line_color}" '
-                 'fill="{color}" '
-                 'stroke-width="{line_width}" '
-                 'transform="scale({scale})rotate({angle} 0 0)">'
-                 "{path}"
-                 "</g>"
+            'stroke="{line_color}" '
+            'fill="{color}" '
+            'stroke-width="{line_width}" '
+            'transform="scale({scale})rotate({angle} 0 0)">'
+            "{path}"
+            "</g>"
         )
 
         html = (

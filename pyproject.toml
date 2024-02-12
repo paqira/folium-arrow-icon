@@ -14,7 +14,7 @@ keywords = [
     "folium",
     "icon",
     "vector field",
-    "quiver"
+    "quiver",
 ]
 license = { text = "MIT" }
 classifiers = [
