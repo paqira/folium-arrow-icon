@@ -84,6 +84,12 @@ class _MetrixHandler:
 class VectorIconHead:
     """Metric of head."""
 
+    def __post_init__(self):  # noqa: D105
+        if self.width < 0:
+            raise ValueError(f"width must be 0 <=, we got {self.width}")
+        if self.width < 0:
+            raise ValueError(f"length must be 0 <=, we got {self.length}")
+
     width: int | float = 8
     """Width of head"""
     length: int | float = 10
@@ -93,6 +99,10 @@ class VectorIconHead:
 @dataclass(frozen=True)
 class VectorIconBody:
     """Metric of body."""
+
+    def __post_init__(self):  # noqa: D105
+        if self.width < 0:
+            raise ValueError(f"width must be 0 <=, we got {self.width}")
 
     width: int | float = 2
     """Width of boby"""
@@ -148,8 +158,8 @@ class VectorIcon(folium.DivIcon):
 
     def __init__(
         self,
-        length: float,
-        angle: float,
+        length: int | float,
+        angle: int | float,
         head: VectorIconHead = DEFAULT_HEAD,
         body: VectorIconBody = DEFAULT_BODY,
         color: str = "black",
@@ -159,6 +169,9 @@ class VectorIcon(folium.DivIcon):
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
     ):
+        if length < 0:
+            raise ValueError(f"length must be 0 <=, we got {length}")
+
         handler = _MetrixHandler(
             length=length,
             angle=angle - math.pi / 2,
@@ -308,6 +321,9 @@ class VectorIcon(folium.DivIcon):
             ...     ),
             ... )
         """
+        if len(components) != 2:
+            raise ValueError(f"length of components must be 2, we got {components}")
+
         return cls(
             length=math.hypot(components[1], components[0]),
             angle=math.atan2(components[1], components[0]),
