@@ -1,4 +1,4 @@
-"""Simple Vector (arrow) Icon for folium."""
+"""Simple arrow (vector/quiver) icon for folium."""
 
 from __future__ import annotations
 
@@ -10,9 +10,9 @@ from typing import Final, Literal, NamedTuple, Sequence
 import folium
 
 __all__ = [
-    "VectorIcon",
-    "VectorIconHead",
-    "VectorIconBody",
+    "ArrowIcon",
+    "ArrowIconHead",
+    "ArrowIconBody",
 ]
 
 __version__: Final = "0.1.0"
@@ -81,7 +81,7 @@ class _MetrixHandler:
 
 
 @dataclass(frozen=True)
-class VectorIconHead:
+class ArrowIconHead:
     """Metric of head."""
 
     def __post_init__(self):  # noqa: D105
@@ -97,7 +97,7 @@ class VectorIconHead:
 
 
 @dataclass(frozen=True)
-class VectorIconBody:
+class ArrowIconBody:
     """Metric of body."""
 
     def __post_init__(self):  # noqa: D105
@@ -108,12 +108,12 @@ class VectorIconBody:
     """Width of boby"""
 
 
-DEFAULT_HEAD = VectorIconHead()
-DEFAULT_BODY = VectorIconBody()
+DEFAULT_HEAD = ArrowIconHead()
+DEFAULT_BODY = ArrowIconBody()
 
 
-class VectorIcon(folium.DivIcon):
-    """Simple Vector (arrow) Icon.
+class ArrowIcon(folium.DivIcon):
+    """Simple arrow (vector/quiver) Icon.
 
     Args:
         length: the length of the vector which satisfies 0 <=.
@@ -121,9 +121,9 @@ class VectorIcon(folium.DivIcon):
                it starts from the positive latidude axis
                and goes clockwise (Left-Handed System).
         head: the head metric,
-              defraulting :obj:`VectorIconHead(width=8, length=10)`.
+              defraulting :obj:`ArrowIconHead(width=8, length=10)`.
         body: the body metric,
-              defraulting :obj:`VectorIconBody(width=2)`.
+              defraulting :obj:`ArrowIconBody(width=2)`.
         color: the color of the vector, supporting any CSS color propery.
         border_width: the border width.
         border_color: the border color.
@@ -137,17 +137,17 @@ class VectorIcon(folium.DivIcon):
 
         >>> folium.Marker(
         ...     (40.78322, -73.96551),
-        ...     icon=VectorIcon(100, math.pi / 2),
+        ...     icon=ArrowIcon(100, math.pi / 2),
         ... )
 
         More customized example;
 
         >>> folium.Marker(
         ...     (40.78322, -73.96551),
-        ...     icon=VectorIcon(
+        ...     icon=ArrowIcon(
         ...         100, math.pi
-        ...         head=VectorIconHead(width=10, length=20),
-        ...         body=VectorIconBody(width=5),
+        ...         head=ArrowIconHead(width=10, length=20),
+        ...         body=ArrowIconBody(width=5),
         ...         color="hsl(30deg, 100%, 50%)",
         ...         border_width=1,
         ...         border_color="red",
@@ -160,8 +160,8 @@ class VectorIcon(folium.DivIcon):
         self,
         length: int | float,
         angle: int | float,
-        head: VectorIconHead = DEFAULT_HEAD,
-        body: VectorIconBody = DEFAULT_BODY,
+        head: ArrowIconHead = DEFAULT_HEAD,
+        body: ArrowIconBody = DEFAULT_BODY,
         color: str = "black",
         border_width: int | float = 0,
         border_color: str = None,
@@ -270,8 +270,8 @@ class VectorIcon(folium.DivIcon):
     def from_comp(
         cls,
         components: Sequence[int | float],
-        head: VectorIconHead = DEFAULT_HEAD,
-        body: VectorIconBody = DEFAULT_BODY,
+        head: ArrowIconHead = DEFAULT_HEAD,
+        body: ArrowIconBody = DEFAULT_BODY,
         color: str = "black",
         border_width: int | float = 0,
         border_color: str = None,
@@ -279,14 +279,14 @@ class VectorIcon(folium.DivIcon):
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
     ):
-        """Makes a :class:`VectorIcon` from components of latitude and longitude direction.
+        """Makes a :class:`ArrowIcon` from components of latitude and longitude direction.
 
         Args:
             components: the components vector, latitude and longitude direction.
             head: the head metric,
-                  defraulting :obj:`VectorIconHead(width=8, length=10)`.
+                  defraulting :obj:`ArrowIconHead(width=8, length=10)`.
             body: the body metric,
-                  defraulting :obj:`VectorIconBody(width=2)`.
+                  defraulting :obj:`ArrowIconBody(width=2)`.
             color: the color of the vector, supporting any CSS color propery.
             border_width: the border width.
             border_color: the border color.
@@ -295,7 +295,7 @@ class VectorIcon(folium.DivIcon):
             class_name: it passes to the :class:`folium.DivIcon` constructor.
 
         Returns:
-             a :class:`VectorIcon` obj
+             a :class:`ArrowIcon` obj
 
         Examples:
             A marker with a vector icon
@@ -303,17 +303,17 @@ class VectorIcon(folium.DivIcon):
 
             >>> folium.Marker(
             ...     (40.78322, -73.96551),
-            ...     icon=VectorIcon.from_comp((100, 50)),
+            ...     icon=ArrowIcon.from_comp((100, 50)),
             ... )
 
             More customized example;
 
             >>> folium.Marker(
             ...     (40.78322, -73.96551),
-            ...     icon=VectorIcon.from_comp(
+            ...     icon=ArrowIcon.from_comp(
             ...         (100, 50)
-            ...         head=VectorIconHead(width=10, length=20),
-            ...         body=VectorIconBody(width=5),
+            ...         head=ArrowIconHead(width=10, length=20),
+            ...         body=ArrowrIconBody(width=5),
             ...         color="hsl(30deg, 100%, 50%)",
             ...         border_width=1,
             ...         border_color="red",

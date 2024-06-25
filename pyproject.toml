@@ -3,16 +3,17 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "folium_vector_icon"
+name = "folium-arrow-icon"
 authors = [
     { name = "Kentaro Tatsumi", email = "paqira.2019@gmail.com" },
 ]
-description = "Simple Vector (Arrow) Icon for folium"
+description = "Simple arrow (vector/quiver) icon for folium"
 readme = "README.md"
 requires-python = ">=3.8"
 keywords = [
     "folium",
     "icon",
+    "arrow",
     "vector field",
     "quiver",
 ]
@@ -28,10 +29,10 @@ dependencies = []
 dynamic = ["version"]
 
 [tool.setuptools.dynamic]
-version = { attr = "folium_vector_icon.__version__" }
+version = { attr = "folium_arrow_icon.__version__" }
 
 [project.urls]
-"Repository" = "https://github.com/paqira/folium_vector_icon"
+"Repository" = "https://github.com/paqira/folium-arrow-icon"
 
 [tool.black]
 line-length = 100
