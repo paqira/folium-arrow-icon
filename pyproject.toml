@@ -28,6 +28,12 @@ classifiers = [
 dependencies = []
 dynamic = ["version"]
 
+[project.optional-dependencies]
+doc = [
+    "myst_nb",
+    "sphinx_book_theme"
+]
+
 [tool.setuptools.dynamic]
 version = { attr = "folium_arrow_icon.__version__" }
 
