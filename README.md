@@ -31,7 +31,7 @@ folium.Marker(
 m.save("sample.html")
 ```
 
-See document for more example.
+See [document](http://folium-arrow-icon.readthedocs.io/) for more example.
 
 You can install `folium-arrow-icon` from PyPI:
 
