@@ -31,7 +31,8 @@ dynamic = ["version"]
 [project.optional-dependencies]
 doc = [
     "myst_nb",
-    "sphinx_book_theme"
+    "sphinx_book_theme",
+    "folium"
 ]
 
 [tool.setuptools.dynamic]
