@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath("../../"))
 # -- Project information -----------------------------------------------------
 
 project = "folium-arrow-icon"
-copyright = "2023--2024, Kentaro Tatsumi"
+copyright = "2023–2024, Kentaro Tatsumi"
 author = "Kentaro Tatsumi"
 
 # -- General configuration ---------------------------------------------------
