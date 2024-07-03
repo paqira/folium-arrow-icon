@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "folium-arrow-icon"
@@ -28,18 +28,28 @@ classifiers = [
 dependencies = []
 dynamic = ["version"]
 
-[project.optional-dependencies]
-doc = [
-    "myst_nb",
-    "sphinx_book_theme",
-    "folium"
-]
-
 [tool.setuptools.dynamic]
 version = { attr = "folium_arrow_icon.__version__" }
 
 [project.urls]
 "Repository" = "https://github.com/paqira/folium-arrow-icon"
+
+[tool.hatch.version]
+path = "folium_arrow_icon.py"
+pattern = '__version__: Final = "(?P<version>.+?)"'
+
+# docs
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "sphinx",
+    "myst_nb",
+    "sphinx_book_theme",
+    "folium"
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "sphinx-build -b html ./doc/source ./doc/build/html"
 
 [tool.black]
 line-length = 100
@@ -50,7 +60,8 @@ exclude = [
     "doc",
 ]
 
-lint.select = [
+[tool.ruff.lint]
+select = [
     "E",
     "F",
     "W",
@@ -60,7 +71,7 @@ lint.select = [
     "B",
     "D",
 ]
-lint.ignore = [
+ignore = [
     "D107", # Missing docstring in `__init__`
 ]
 
