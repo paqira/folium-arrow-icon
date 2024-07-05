@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from functools import cached_property
 from typing import Final, Literal, NamedTuple, Sequence
 
-import folium
+import folium  # type: ignore
 
 __all__ = [
     "ArrowIcon",
@@ -29,7 +29,7 @@ class _BBox(NamedTuple):
 class _MetrixHandler:
     length: float
     angle: float
-    margin: int
+    margin: int | float
 
     @property
     def degree(self):
@@ -164,7 +164,7 @@ class ArrowIcon(folium.DivIcon):
         body: ArrowIconBody = DEFAULT_BODY,
         color: str = "black",
         border_width: int | float = 0,
-        border_color: str = None,
+        border_color: str | None = None,
         anchor: Literal["tail", "mid", "head"] = "tail",
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
@@ -274,7 +274,7 @@ class ArrowIcon(folium.DivIcon):
         body: ArrowIconBody = DEFAULT_BODY,
         color: str = "black",
         border_width: int | float = 0,
-        border_color: str = None,
+        border_color: str | None = None,
         anchor: Literal["tail", "mid", "head"] = "tail",
         popup_anchor: tuple[int, int] | None = None,
         class_name: str = "empty",
