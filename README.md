@@ -2,7 +2,7 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/folium-arrow-icon?logo=PyPI&label=PyPI)](https://pypi.org/project/folium-arrow-icon/)
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?logo=Python&label=Python&tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fpaqira%2Ffolium-arrow-icon%2Fmain%2Fpyproject.toml)
-[![Read the Docs](https://img.shields.io/readthedocs/folium-arrow-icon?logo=readthedocs)](https://folium-arrow-icon.readthedocs.io/en/latest/?badge=latest)
+[![Read the Docs](https://img.shields.io/readthedocs/folium-arrow-icon?logo=readthedocs)](https://folium-arrow-icon.readthedocs.io)
 ![PyPI - License](https://img.shields.io/pypi/l/folium-arrow-icon)
 
 This package provides simple arrow (vector/quiver) icon for the [folium](https://pypi.org/project/folium/) package.
