@@ -19,7 +19,12 @@ keywords = [
 ]
 license = { text = "MIT" }
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: GIS",
@@ -32,7 +37,9 @@ dynamic = ["version"]
 version = { attr = "folium_arrow_icon.__version__" }
 
 [project.urls]
-"Repository" = "https://github.com/paqira/folium-arrow-icon"
+Documentation = "https://folium-arrow-icon.readthedocs.io"
+Issues = "https://github.com/paqira/folium-arrow-icon/issues"
+Source = "https://github.com/paqira/folium-arrow-icon"
 
 [tool.hatch.version]
 path = "folium_arrow_icon.py"
@@ -42,10 +49,10 @@ pattern = '__version__: Final = "(?P<version>.+?)"'
 
 [tool.hatch.envs.types]
 extra-dependencies = [
-  "mypy>=1.0.0",
+    "mypy>=1.0.0",
 ]
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive folium_arrow_icon.py"
+check = "mypy --install-types --non-interactive {args:folium_arrow_icon.py}"
 
 # docs
 
@@ -60,8 +67,7 @@ dependencies = [
 [tool.hatch.envs.docs.scripts]
 build = "sphinx-build -b html ./doc/source ./doc/build/html"
 
-[tool.black]
-line-length = 100
+# ruff
 
 [tool.ruff]
 line-length = 100
