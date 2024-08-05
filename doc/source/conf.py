@@ -68,3 +68,23 @@ html_theme = "sphinx_book_theme"
 html_static_path = ["_static"]
 
 autodoc_member_order = "bysource"
+
+html_title = "folium-arrow-icon"
+
+html_theme_options = {
+    "use_repository_button": True,
+    "repository_url": "https://github.com/paqira/folium-arrow-icon",
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/paqira/folium-arrow-icon",
+            "icon": "fa-brands fa-github",
+        },
+        {
+            "name": "PyPI",
+            "url": "https://pypi.org/project/folium-arrow-icon/",
+            "icon": "https://img.shields.io/pypi/v/folium-arrow-icon?logo=PyPI&label=PyPI",
+            "type": "url",
+        },
+    ],
+}
