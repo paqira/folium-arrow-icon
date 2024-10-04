@@ -84,28 +84,28 @@ class _MetrixHandler:
 class ArrowIconHead:
     """Metric of head."""
 
+    width: int | float = 8
+    """Width of head"""
+    length: int | float = 10
+    """Width of length"""
+
     def __post_init__(self):  # noqa: D105
         if self.width < 0:
             raise ValueError(f"width must be 0 <=, we got {self.width}")
         if self.width < 0:
             raise ValueError(f"length must be 0 <=, we got {self.length}")
 
-    width: int | float = 8
-    """Width of head"""
-    length: int | float = 10
-    """Width of length"""
-
 
 @dataclass(frozen=True)
 class ArrowIconBody:
     """Metric of body."""
 
+    width: int | float = 2
+    """Width of boby"""
+
     def __post_init__(self):  # noqa: D105
         if self.width < 0:
             raise ValueError(f"width must be 0 <=, we got {self.width}")
-
-    width: int | float = 2
-    """Width of boby"""
 
 
 DEFAULT_HEAD = ArrowIconHead()
