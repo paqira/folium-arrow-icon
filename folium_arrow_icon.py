@@ -111,6 +111,11 @@ class ArrowIconBody:
 DEFAULT_HEAD = ArrowIconHead()
 DEFAULT_BODY = ArrowIconBody()
 
+PATH = '<path d="M {:.7g} {:.7g} l {:.7g} {:.7g} l {:.7g} {:.7g} l {:.7g} {:.7g} l {:.7g} {:.7g} l {:.7g} {:.7g} l {:.7g} {:.7g} Z" />'  # noqa: E501
+G = '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="rotate({angle} 0 0)">{path}</g>'  # noqa: E501
+G_SCALE = '<g stroke="{line_color}" fill="{color}" stroke-width="{line_width}" transform="scale({scale})rotate({angle} 0 0)">{path}</g>'  # noqa: E501
+HTML = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">{g}</svg>'  # noqa: E501
+
 
 class ArrowIcon(folium.DivIcon):
     """Simple arrow (vector/quiver) Icon.
@@ -189,12 +194,7 @@ class ArrowIcon(folium.DivIcon):
         #    |          | /
         #    |          3
         #
-        path = (
-            '<path d="M {:.7g} {:.7g} l {:.7g} {:.7g} '
-            "l {:.7g} {:.7g} l {:.7g} {:.7g} "
-            "l {:.7g} {:.7g} l {:.7g} {:.7g} "
-            'l {:.7g} {:.7g} Z" />'
-        ).format(
+        path = PATH.format(
             # move @
             0,
             -body.width / 2.0,
@@ -219,36 +219,9 @@ class ArrowIcon(folium.DivIcon):
             # to @ by Z
         )
 
-        g = (
-            "<g "
-            'stroke="{line_color}" '
-            'fill="{color}" '
-            'stroke-width="{line_width}" '
-            'transform="rotate({angle} 0 0)">'
-            "{path}"
-            "</g>"
-            if head.length < length
-            else "<g "
-            'stroke="{line_color}" '
-            'fill="{color}" '
-            'stroke-width="{line_width}" '
-            'transform="scale({scale})rotate({angle} 0 0)">'
-            "{path}"
-            "</g>"
-        )
-
-        html = (
-            "<svg "
-            'xmlns="http://www.w3.org/2000/svg" '
-            'version="1.1" '
-            'viewBox="{bbox.x0} {bbox.y0} {bbox.x} {bbox.y}">'
-            "{g}"
-            "</svg>"
-        )
-
-        html = html.format(
+        html = HTML.format(
             bbox=handler.bbox,
-            g=g.format(
+            g=(G if head.length < length else G_SCALE).format(
                 path=path,
                 angle=handler.degree,
                 scale=length / head.length,
