@@ -44,7 +44,6 @@ Source = "https://github.com/paqira/folium-arrow-icon"
 
 [tool.hatch.version]
 path = "folium_arrow_icon.py"
-pattern = '__version__: Final = "(?P<version>.+?)"'
 
 # types
 
