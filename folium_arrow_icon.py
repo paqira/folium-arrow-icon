@@ -5,7 +5,10 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from functools import cached_property
-from typing import Final, Literal, NamedTuple, Sequence
+from typing import TYPE_CHECKING, NamedTuple
+
+if TYPE_CHECKING:
+    from typing import Final, Literal, Sequence
 
 import folium  # type: ignore
 
