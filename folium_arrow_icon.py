@@ -8,7 +8,7 @@ from functools import cached_property
 from typing import TYPE_CHECKING, NamedTuple
 
 if TYPE_CHECKING:
-    from typing import Final, Literal, Sequence
+    from typing import Literal, Sequence
 
 import folium  # type: ignore
 
