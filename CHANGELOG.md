@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.3
+
+### Fixed
+
+- Fix `ArrowIconHead` length check
+
 ## 0.1.2
 
 ### Added
