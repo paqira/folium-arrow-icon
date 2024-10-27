@@ -95,7 +95,7 @@ class ArrowIconHead:
     def __post_init__(self):  # noqa: D105
         if self.width < 0:
             raise ValueError(f"width must be 0 <=, we got {self.width}")
-        if self.width < 0:
+        if self.length < 0:
             raise ValueError(f"length must be 0 <=, we got {self.length}")
 
 
